@@ -10,6 +10,7 @@
 
 int main() {
 	std::cout << Templatestr + colorized::IntToString(1) + Semicolonstr + colorized::IntToString(RED) + "m" << "Hello!\n";
-	colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(), "Hello, Colorized!");
+	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "Hello, Colorized!");
+	colorized::PrintWith(colorized::ColorizeChar(BOLD, CYAN), "\nHello, Colorized (Char)!");
 	return 0;
 }

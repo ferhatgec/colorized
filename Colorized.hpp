@@ -182,7 +182,7 @@ namespace colorized {
     }
     
     static void PrintWith(const char* color, const char* text) {
-    	std::cout << color <<  text <<  WBLACK_COLOR;
+   	std::cout << color << text << WBLACK_COLOR;
     }
 
     static void PrintWhReset(const char* color, const char* text) {
@@ -191,6 +191,12 @@ namespace colorized {
 
     static std::string Colorize(int type, int color) {
     	return Templatestr + IntToString(type) + Semicolonstr + IntToString(color) + Markstr;
+    }
+    
+    static const char* ColorizeChar(int type, int color) {
+    	std::string conv(Templatestr + IntToString(type) + Semicolonstr + IntToString(color) + Markstr);
+    	std::cout << conv;
+    	return conv.c_str();
     }
 }
 
