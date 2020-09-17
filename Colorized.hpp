@@ -187,8 +187,18 @@ textBackground(int color) {
 }
 
 void
+setColor(const char* color) {
+    std::cout << color;
+}
+
+void
+setColor(TYPE type, int color) {
+    setColor(colorizec(type,color));
+}
+
+void
 printfc(const char* color, bool reset, char* msg) {
-    std::cout << color; // Contains enocoding bug!
+    setColor(color); // Contains enocoding bug!
     printf(msg);
     if(reset)
         printf(WBLACK_COLOR);
