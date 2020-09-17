@@ -175,11 +175,6 @@ std::string
 colorize(TYPE type, int color) {
     return Templatestr + std::to_string(type) + Semicolonstr + std::to_string(color) + Markstr;
 }
-    
-const char*
-colorizec(TYPE type, int color) {
-    return (Templatestr + std::to_string(type) + Semicolonstr + std::to_string(color) + Markstr).c_str();
-}
 
 void
 textBackground(int color) {
@@ -187,25 +182,25 @@ textBackground(int color) {
 }
 
 void
-setColor(const char* color) {
+setColor(const std::string color) {
     std::cout << color;
 }
 
 void
 setColor(TYPE type, int color) {
-    setColor(colorizec(type,color));
+    setColor(colorize(type,color));
 }
 
 void
-printfc(const char* color, bool reset, char* msg) {
-    setColor(color); // Contains enocoding bug!
+printfc(const std::string color, bool reset, char* msg) {
+    setColor(color);
     printf(msg);
     if(reset)
         printf(WBLACK_COLOR);
 }
 
 void
-printfc(const char* color, char* msg) {
+printfc(const std::string color, char* msg) {
     printfc(color,1,msg);
 }
 

@@ -11,7 +11,7 @@
 int
 main() {
 	//std::cout << Templatestr + intToString(1) + Semicolonstr + intToString(RED) + "m" << "Hello!\n";
-	printfc(colorize(TYPE::BOLD, LIGHT_MAGENTA).c_str(), "Hello, Colorized!");
-	printfc(colorizec(TYPE::BOLD, CYAN), "\nHello, Colorized (Char)!");
+	printfc(colorize(TYPE::BOLD, CYAN), "Hello, Colorized!");
+	printfc(colorize(TYPE::BOLD, MAGENTA), "\nHello, Colorized (Char)!");
 	return 0;
 }
