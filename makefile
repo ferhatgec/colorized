@@ -1,4 +1,4 @@
 works: compile
 
 compile:
-	g++ example.cpp -o ex
+	g++ -I. example.cpp -o ex

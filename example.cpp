@@ -5,7 +5,7 @@
 #
 # */
 
-#include "colorized.hpp"
+#include <Colorized.hpp>
 #include <iostream>
 
 int

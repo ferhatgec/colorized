@@ -5,4 +5,4 @@
 # 
 #!/bin/sh
 
-g++ example.cpp -o ex && ./ex
+g++ -I. example.cpp -o ex && ./ex
