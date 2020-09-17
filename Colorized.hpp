@@ -11,7 +11,6 @@
 #include <iostream>
 #include <cstring>
 #include <sstream>
-#include <stdarg.h>
 
 #define ESC 033 
 
@@ -52,15 +51,6 @@
 #define FLIGHT_MAGENTA 105
 #define FLIGHT_CYAN 106
 #define FWHITE 107   
-
-// Default Set Type Definitions
-#define SDEFAULT 0
-#define BOLD 1
-#define DIM 2
-#define UNDERLINED 4
-#define BLINK 5
-#define REVERSE 7
-#define HIDDEN 8
 
 // Default Unset Type Definitions  
 #define UALL 0
@@ -171,41 +161,42 @@ static std::string Templatestr(Template);
 // Reset (BLACK)
 #define WBLACK_COLOR "\033[0m"
 
+enum TYPE {
+    LIGHT = 0,
+    BOLD = 1,
+    DIM = 2,
+    UNDERLINED = 4,
+    BLINK = 5,
+    REVERSE = 7,
+    HIDDEN = 8,
+};
+
+std::string
+colorize(TYPE type, int color) {
+    return Templatestr + std::to_string(type) + Semicolonstr + std::to_string(color) + Markstr;
+}
+    
+const char*
+colorizec(TYPE type, int color) {
+    return (Templatestr + std::to_string(type) + Semicolonstr + std::to_string(color) + Markstr).c_str();
+}
+
 void
 textBackground(int color) {
 	printf("%c[%dm", ESC, 40+color);
 }
-        
-std::string
-intToString(int a) {
-    std::ostringstream temp;
-    temp << a;
-    return temp.str();
-}
 
 void
 printfc(const char* color, bool reset, char* msg) {
-    printf(color); // Create encoding bug if used with std::cout!
-    std::cout << msg;
+    std::cout << color; // Contains enocoding bug!
+    printf(msg);
     if(reset)
-        std::cout << WBLACK_COLOR;
+        printf(WBLACK_COLOR);
 }
 
 void
 printfc(const char* color, char* msg) {
     printfc(color,1,msg);
-}
-
-std::string
-colorize(int type, int color) {
-    return Templatestr + intToString(type) + Semicolonstr + intToString(color) + Markstr;
-}
-    
-const char*
-colorizeChar(int type, int color) {
-    std::string conv(Templatestr + intToString(type) + Semicolonstr + intToString(color) + Markstr);
-    std::cout << conv;
-    return conv.c_str();
 }
 
 #endif // COLORIZED_HPP
