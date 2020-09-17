@@ -11,6 +11,7 @@
 #include <iostream>
 #include <cstring>
 #include <sstream>
+#include <stdarg.h>
 
 #define ESC 033 
 
@@ -170,34 +171,41 @@ static std::string Templatestr(Template);
 // Reset (BLACK)
 #define WBLACK_COLOR "\033[0m"
 
-namespace colorized {
-    static void TextBackground(int color) {
+void
+textBackground(int color) {
 	printf("%c[%dm", ESC, 40+color);
-    }
+}
         
-    static std::string IntToString(int a) {
-    	std::ostringstream temp;
-    	temp << a;
-    	return temp.str();
-    }
-    
-    static void PrintWith(const char* color, const char* text) {
-   	std::cout << color << text << WBLACK_COLOR;
-    }
+std::string
+intToString(int a) {
+    std::ostringstream temp;
+    temp << a;
+    return temp.str();
+}
 
-    static void PrintWhReset(const char* color, const char* text) {
-    	std::cout << color << text;
-    }
+void
+printfc(const char* color, bool reset, char* msg) {
+    printf(color); // Create encoding bug if used with std::cout!
+    std::cout << msg;
+    if(reset)
+        std::cout << WBLACK_COLOR;
+}
 
-    static std::string Colorize(int type, int color) {
-    	return Templatestr + IntToString(type) + Semicolonstr + IntToString(color) + Markstr;
-    }
+void
+printfc(const char* color, char* msg) {
+    printfc(color,1,msg);
+}
+
+std::string
+colorize(int type, int color) {
+    return Templatestr + intToString(type) + Semicolonstr + intToString(color) + Markstr;
+}
     
-    static const char* ColorizeChar(int type, int color) {
-    	std::string conv(Templatestr + IntToString(type) + Semicolonstr + IntToString(color) + Markstr);
-    	std::cout << conv;
-    	return conv.c_str();
-    }
+const char*
+colorizeChar(int type, int color) {
+    std::string conv(Templatestr + intToString(type) + Semicolonstr + intToString(color) + Markstr);
+    std::cout << conv;
+    return conv.c_str();
 }
 
 #endif // COLORIZED_HPP
