@@ -5,12 +5,13 @@
 #
 # */
 
-#include "Colorized.hpp"
+#include "colorized.hpp"
 #include <iostream>
 
-int main() {
-	std::cout << Templatestr + colorized::IntToString(1) + Semicolonstr + colorized::IntToString(RED) + "m" << "Hello!\n";
-	colorized::PrintWith(colorized::Colorize(BOLD, LIGHT_MAGENTA).c_str(), "Hello, Colorized!");
-	colorized::PrintWith(colorized::ColorizeChar(BOLD, CYAN), "\nHello, Colorized (Char)!");
+int
+main() {
+	//std::cout << Templatestr + intToString(1) + Semicolonstr + intToString(RED) + "m" << "Hello!\n";
+	printfc(colorize(TYPE::BOLD, CYAN), "Hello, Colorized!");
+	printfc(colorize(TYPE::BOLD, MAGENTA), "\nHello, Colorized (Char)!");
 	return 0;
 }
