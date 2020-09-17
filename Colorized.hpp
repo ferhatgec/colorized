@@ -52,15 +52,6 @@
 #define FLIGHT_CYAN 106
 #define FWHITE 107   
 
-// Default Unset Type Definitions  
-#define UALL 0
-#define UBOLD 21
-#define UDIM 22
-#define UUNDERLINED 24
-#define UBLINK 25
-#define UREVERSE 27
-#define UHIDDEN 28
-
 #define DEFAULT 39
 #define BLACK 30
 #define RED 31
@@ -80,40 +71,39 @@
 #define LIGHT_WHITE 97
 
 
-#define RED_COLOR printf("\033[0;31m");
-#define GREEN_COLOR printf("\033[0;32m");
-#define YELLOW_COLOR printf("\033[0;33m");
-#define BLUE_COLOR printf("\033[0;34m");
-#define MAGENTA_COLOR printf("\033[0;35m");
-#define CYAN_COLOR printf("\033[0;36m");
-#define LIGHT_BLACK_COLOR printf("\033[0;90m");
-#define LIGHT_RED_COLOR printf("\033[0;91m");
-#define LIGHT_GREEN_COLOR printf("\033[0;92m");
-#define LIGHT_YELLOW_COLOR printf("\033[0;93m");
-#define LIGHT_BLUE_COLOR printf("\033[0;94m");
-#define LIGHT_MAGENTA_COLOR printf("\033[0;95m");
-#define LIGHT_CYAN_COLOR printf("\033[0;96m");
-#define LIGHT_WHITE_COLOR printf("\033[0;97m");
+#define RED_COLOR printf("\033[0;31m")
+#define GREEN_COLOR printf("\033[0;32m")
+#define YELLOW_COLOR printf("\033[0;33m")
+#define BLUE_COLOR printf("\033[0;34m")
+#define MAGENTA_COLOR printf("\033[0;35m")
+#define CYAN_COLOR printf("\033[0;36m")
+#define LIGHT_BLACK_COLOR printf("\033[0;90m")
+#define LIGHT_RED_COLOR printf("\033[0;91m")
+#define LIGHT_GREEN_COLOR printf("\033[0;92m")
+#define LIGHT_YELLOW_COLOR printf("\033[0;93m")
+#define LIGHT_BLUE_COLOR printf("\033[0;94m")
+#define LIGHT_MAGENTA_COLOR printf("\033[0;95m")
+#define LIGHT_CYAN_COLOR printf("\033[0;96m")
+#define LIGHT_WHITE_COLOR printf("\033[0;97m")
 
 // Default bold** color definitions
-#define BOLD_RED_COLOR printf("\033[1;31m");
-#define BOLD_GREEN_COLOR printf("\033[1;32m");
-#define BOLD_YELLOW_COLOR printf("\033[01;33m");
-#define BOLD_BLUE_COLOR printf("\033[1;34m");
-#define BOLD_MAGENTA_COLOR printf("\033[1;35m");
-#define BOLD_CYAN_COLOR printf("\033[1;36m");
-#define BOLD_LIGHT_BLACK_COLOR printf("\033[1;90m");
-#define BOLD_LIGHT_RED_COLOR printf("\033[1;91m");
-#define BOLD_LIGHT_GREEN_COLOR printf("\033[1;92m");
-#define BOLD_LIGHT_YELLOW_COLOR printf("\033[1;93m");
-#define BOLD_LIGHT_BLUE_COLOR printf("\033[1;94m");
-#define BOLD_LIGHT_MAGENTA_COLOR printf("\033[1;95m");
-#define BOLD_LIGHT_CYAN_COLOR printf("\033[1;96m");
-#define BOLD_LIGHT_WHITE_COLOR printf("\033[1;97m");
+#define BOLD_RED_COLOR printf("\033[1;31m")
+#define BOLD_GREEN_COLOR printf("\033[1;32m")
+#define BOLD_YELLOW_COLOR printf("\033[01;33m")
+#define BOLD_BLUE_COLOR printf("\033[1;34m")
+#define BOLD_MAGENTA_COLOR printf("\033[1;35m")
+#define BOLD_CYAN_COLOR printf("\033[1;36m")
+#define BOLD_LIGHT_BLACK_COLOR printf("\033[1;90m")
+#define BOLD_LIGHT_RED_COLOR printf("\033[1;91m")
+#define BOLD_LIGHT_GREEN_COLOR printf("\033[1;92m")
+#define BOLD_LIGHT_YELLOW_COLOR printf("\033[1;93m")
+#define BOLD_LIGHT_BLUE_COLOR printf("\033[1;94m")
+#define BOLD_LIGHT_MAGENTA_COLOR printf("\033[1;95m")
+#define BOLD_LIGHT_CYAN_COLOR printf("\033[1;96m")
+#define BOLD_LIGHT_WHITE_COLOR printf("\033[1;97m")
 
-// Reset (BLACK)
-#define BLACK_COLOR printf("\033[0m");
-#define WHITE_COLOR printf("\033[1;37m");
+#define RESETB printf("\033[0m")
+#define RESETW printf("\033[1;37m")
 
 // Default color definitions without printlnf
 #define WRED_COLOR "\033[0;31m"
@@ -161,7 +151,7 @@ static std::string Templatestr(Template);
 // Reset (BLACK)
 #define WBLACK_COLOR "\033[0m"
 
-enum TYPE {
+enum TYPE:int {
     LIGHT = 0,
     BOLD = 1,
     DIM = 2,
@@ -169,6 +159,13 @@ enum TYPE {
     BLINK = 5,
     REVERSE = 7,
     HIDDEN = 8,
+    UALL = 0,
+    UBOLD = 21,
+    UDIM = 22,
+    UUNDERLINED = 24,
+    UBLINK = 25,
+    UREVERSE = 27,
+    UHIDDEN = 28
 };
 
 std::string
