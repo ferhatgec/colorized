@@ -10,7 +10,7 @@
 #### * Colorized is integrated on FlaScript Core.
 
 ```cpp
-colorized::PrintWith(colorized::Colorize(BOLD, CYAN).c_str(), "Hello, Colorized!");
+printfc(colorize(TYPE::BOLD, MAGENTA), "Hello, Colorized!\n");
 ```
 
 ##### Fegeya Colorized licensed with MIT License.
