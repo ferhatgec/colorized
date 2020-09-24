@@ -193,11 +193,25 @@ printfc(const std::string color, bool reset, char* msg) {
     setColor(color);
     printf(msg);
     if(reset)
-        printf(WBLACK_COLOR);
+        RESETB
+}
+
+void
+printfc(const std::string color, bool reset, const char* msg) {
+    setColor(color);
+    printf(msg);
+    if(reset)
+        RESETB
 }
 
 void
 printfc(const std::string color, char* msg) {
+    printfc(color,1,msg);
+}
+
+
+void
+printfc(const std::string color, const char* msg) {
     printfc(color,1,msg);
 }
 
