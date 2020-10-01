@@ -201,6 +201,10 @@ std::string toANSICode(TYPE type, int color) {
          std::to_string(color) + Markstr;
 }
 
+std::string toANSICode(TCOLOR color) {
+  return toANSICode(color.type, color.color);
+}
+
 void textBackground(int color) { printf("%c[%dm", ESC, 40 + color); }
 
 void setColor(COLOR color) { std::cout << toANSICode(color); }
