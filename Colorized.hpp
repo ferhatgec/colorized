@@ -194,28 +194,28 @@ std::string toANSICode(TYPE type, int color) {
 
 void textBackground(int color) { printf("%c[%dm", ESC, 40 + color); }
 
-void setColor(const std::string color) { std::cout << color; }
+void setColor(COLOR color) { std::cout << toANSICode(color); }
 
-void setColor(TYPE type, int color) { setColor(toANSICode(type, color)); }
+void setColor(TYPE type, int color) { std::cout << toANSICode(type, color); }
 
-void printfc(const std::string color, bool reset, char* msg) {
+void printfc(const TYPE type, int color, bool reset, char* msg) {
+  setColor(type, color);
+  printf(msg);
+  if (reset)
+    RESETB
+}
+
+void printfc(const COLOR color, bool reset, char* msg) {
   setColor(color);
   printf(msg);
   if (reset)
     RESETB
 }
 
-void printfc(const std::string color, bool reset, const char* msg) {
-  setColor(color);
-  printf(msg);
-  if (reset)
-    RESETB
+void printfc(const TYPE type, int color, char* msg) {
+  printfc(type, color, 1, msg);
 }
 
-void printfc(const std::string color, char* msg) { printfc(color, 1, msg); }
-
-void printfc(const std::string color, const char* msg) {
-  printfc(color, 1, msg);
-}
+void printfc(const COLOR color, char* msg) { printfc(color, 1, msg); }
 
 #endif  // COLORIZED_HPP

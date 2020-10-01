@@ -9,12 +9,12 @@
 #include <iostream>
 
 int main(void) {
-  setColor(toANSICode(COLOR{255, 0, 0}));
+  setColor(COLOR{255, 0, 0});
   std::cout << "TEST";
   return 0;
   // std::cout << Templatestr + intToString(1) + Semicolonstr + intToString(RED)
   // + "m" << "Hello!\n";
-  printfc(toANSICode(TYPE::BOLD, CYAN), "Hello, Colorized!");
-  printfc(toANSICode(TYPE::BOLD, MAGENTA), "\nHello, Colorized (Char)!\n");
+  printfc(TYPE::BOLD, CYAN, "Hello, Colorized!");
+  printfc(TYPE::BOLD, MAGENTA, "\nHello, Colorized (Char)!\n");
   return 0;
 }
