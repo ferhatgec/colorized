@@ -173,6 +173,11 @@ typedef struct COLOR {
   unsigned short B;
 } COLOR;
 
+typedef struct TCOLOR {
+  TYPE type;
+  int color;
+} TCOLOR;
+
 COLOR fromRGB(unsigned short r, unsigned short g, unsigned short b) {
   return COLOR{r, g, b};
 }
