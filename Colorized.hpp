@@ -197,6 +197,19 @@ std::string toANSICode(COLOR color) {
 	return val;
 }
 
+std::string toANSIFCode(COLOR color) {
+  	std::stringstream str;
+  	str << "\033[48;2;";
+  	str << color.R;
+  	str << ";";
+  	str << color.G;
+  	str << ";";
+  	str << color.B;
+  	str << "m";
+  	std::string val = str.str();
+	return val;
+}
+
 std::string toANSICode(TYPE type, int color) {
   	return Templatestr + std::to_string(type) + Semicolonstr +
          std::to_string(color) + Markstr;
@@ -209,6 +222,8 @@ std::string toANSICode(TCOLOR color) {
 void textBackground(int color) { printf("%c[%dm", ESC, 40 + color); }
 
 void setColor(COLOR color) { std::cout << toANSICode(color); }
+
+void setFColor(COLOR color) { std::cout << toANSIFCode(color); }
 
 void setColor(TYPE type, int color) { std::cout << toANSICode(type, color); }
 
