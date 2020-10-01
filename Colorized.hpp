@@ -182,6 +182,8 @@ COLOR fromRGB(unsigned short r, unsigned short g, unsigned short b) {
   return COLOR{r, g, b};
 }
 
+TCOLOR fromT(TYPE type, int color) { return TCOLOR{type, color}; }
+
 std::string toANSICode(COLOR color) {
   std::stringstream str;
   str << "\033[38;2;";
