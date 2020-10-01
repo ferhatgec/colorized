@@ -101,8 +101,8 @@
 #define BOLD_LIGHT_CYAN_COLOR printf("\033[1;96m");
 #define BOLD_LIGHT_WHITE_COLOR printf("\033[1;97m");
 
-#define RESETB printf("\033[0m");
-#define RESETW printf("\033[1;37m");
+#define RESETB() printf("\033[0m")
+#define RESETW() printf("\033[1;37m")
 
 // Default color definitions without printlnf
 #define WRED_COLOR "\033[0;31m"
@@ -206,14 +206,14 @@ void printfc(const TYPE type, int color, bool reset, char* msg) {
   setColor(type, color);
   printf(msg);
   if (reset)
-    RESETB
+    RESETB();
 }
 
 void printfc(const COLOR color, bool reset, char* msg) {
   setColor(color);
   printf(msg);
   if (reset)
-    RESETB
+    RESETB();
 }
 
 void printfc(const TYPE type, int color, char* msg) {
