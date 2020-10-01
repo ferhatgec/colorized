@@ -211,6 +211,8 @@ void setColor(COLOR color) { std::cout << toANSICode(color); }
 
 void setColor(TYPE type, int color) { std::cout << toANSICode(type, color); }
 
+void setColor(TCOLOR color) { setColor(color.type, color.color); }
+
 void printfc(const TYPE type, int color, bool reset, char* msg) {
   setColor(type, color);
   printf(msg);
