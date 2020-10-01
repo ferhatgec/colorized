@@ -151,59 +151,59 @@ static std::string Templatestr(Template);
 #define WBLACK_COLOR "\033[0m"
 
 enum TYPE : int {
-  LIGHT = 0,
-  BOLD = 1,
-  DIM = 2,
-  UNDERLINED = 4,
-  BLINK = 5,
-  REVERSE = 7,
-  HIDDEN = 8,
-  UALL = 0,
-  UBOLD = 21,
-  UDIM = 22,
-  UUNDERLINED = 24,
-  UBLINK = 25,
-  UREVERSE = 27,
-  UHIDDEN = 28
+ 	LIGHT = 0,
+  	BOLD = 1,
+  	DIM = 2,
+  	UNDERLINED = 4,
+  	BLINK = 5,
+  	REVERSE = 7,
+  	HIDDEN = 8,
+  	UALL = 0,
+  	UBOLD = 21,
+  	UDIM = 22,
+  	UUNDERLINED = 24,
+  	UBLINK = 25,
+  	UREVERSE = 27,
+  	UHIDDEN = 28
 };
 
 typedef struct COLOR {
-  unsigned short R;
-  unsigned short G;
-  unsigned short B;
+  	unsigned short R;
+  	unsigned short G;
+  	unsigned short B;
 } COLOR;
 
 typedef struct TCOLOR {
-  TYPE type;
-  int color;
+  	TYPE type;
+  	int color;
 } TCOLOR;
 
 COLOR fromRGB(unsigned short r, unsigned short g, unsigned short b) {
-  return COLOR{r, g, b};
+	return COLOR{r, g, b};
 }
 
 TCOLOR fromT(TYPE type, int color) { return TCOLOR{type, color}; }
 
 std::string toANSICode(COLOR color) {
-  std::stringstream str;
-  str << "\033[38;2;";
-  str << color.R;
-  str << ";";
-  str << color.G;
-  str << ";";
-  str << color.B;
-  str << "m";
-  std::string val = str.str();
-  return val;
+  	std::stringstream str;
+  	str << "\033[38;2;";
+  	str << color.R;
+  	str << ";";
+  	str << color.G;
+  	str << ";";
+  	str << color.B;
+  	str << "m";
+  	std::string val = str.str();
+	return val;
 }
 
 std::string toANSICode(TYPE type, int color) {
-  return Templatestr + std::to_string(type) + Semicolonstr +
+  	return Templatestr + std::to_string(type) + Semicolonstr +
          std::to_string(color) + Markstr;
 }
 
 std::string toANSICode(TCOLOR color) {
-  return toANSICode(color.type, color.color);
+  	return toANSICode(color.type, color.color);
 }
 
 void textBackground(int color) { printf("%c[%dm", ESC, 40 + color); }
@@ -215,29 +215,29 @@ void setColor(TYPE type, int color) { std::cout << toANSICode(type, color); }
 void setColor(TCOLOR color) { setColor(color.type, color.color); }
 
 void printfc(const TYPE type, int color, bool reset, char* msg) {
-  setColor(type, color);
-  printf(msg);
-  if (reset)
-    RESETB();
+  	setColor(type, color);
+  	printf(msg);
+
+  	if (reset) RESETB();
 }
 
 void printfc(const TCOLOR color, bool reset, char* msg) {
-  printfc(color.type, color.color, reset, msg);
+ 	printfc(color.type, color.color, reset, msg);
 }
 
 void printfc(const COLOR color, bool reset, char* msg) {
-  setColor(color);
-  printf(msg);
-  if (reset)
-    RESETB();
+  	setColor(color);
+  	printf(msg);
+  	
+	if (reset) RESETB();
 }
 
 void printfc(const TYPE type, int color, char* msg) {
-  printfc(type, color, 1, msg);
+  	printfc(type, color, 1, msg);
 }
 
 void printfc(const TCOLOR color, char* msg) {
-  printfc(color.type, color.color, msg);
+  	printfc(color.type, color.color, msg);
 }
 
 void printfc(const COLOR color, char* msg) { printfc(color, 1, msg); }
