@@ -173,7 +173,7 @@ typedef struct COLOR {
   unsigned short B;
 } COLOR;
 
-std::string colorize(COLOR color) {
+std::string toANSICode(COLOR color) {
   std::stringstream str;
   str << "\033[38;2;";
   str << color.R;
@@ -187,7 +187,7 @@ std::string colorize(COLOR color) {
   return val;
 }
 
-std::string colorize(TYPE type, int color) {
+std::string toANSICode(TYPE type, int color) {
   return Templatestr + std::to_string(type) + Semicolonstr +
          std::to_string(color) + Markstr;
 }
@@ -196,7 +196,7 @@ void textBackground(int color) { printf("%c[%dm", ESC, 40 + color); }
 
 void setColor(const std::string color) { std::cout << color; }
 
-void setColor(TYPE type, int color) { setColor(colorize(type, color)); }
+void setColor(TYPE type, int color) { setColor(toANSICode(type, color)); }
 
 void printfc(const std::string color, bool reset, char* msg) {
   setColor(color);
