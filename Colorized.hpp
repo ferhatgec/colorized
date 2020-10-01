@@ -194,7 +194,6 @@ std::string toANSICode(COLOR color) {
   str << color.B;
   str << "m";
   std::string val = str.str();
-  delete &str;
   return val;
 }
 
