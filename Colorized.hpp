@@ -167,6 +167,12 @@ enum TYPE : int {
   UHIDDEN = 28
 };
 
+typedef struct COLOR {
+  unsigned short R;
+  unsigned short G;
+  unsigned short B;
+} COLOR;
+
 std::string colorize(TYPE type, int color) {
   return Templatestr + std::to_string(type) + Semicolonstr +
          std::to_string(color) + Markstr;
