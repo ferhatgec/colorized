@@ -220,6 +220,10 @@ void printfc(const TYPE type, int color, bool reset, char* msg) {
     RESETB();
 }
 
+void printfc(const TCOLOR color, bool reset, char* msg) {
+  printfc(color.type, color.color, reset, msg);
+}
+
 void printfc(const COLOR color, bool reset, char* msg) {
   setColor(color);
   printf(msg);
@@ -229,6 +233,10 @@ void printfc(const COLOR color, bool reset, char* msg) {
 
 void printfc(const TYPE type, int color, char* msg) {
   printfc(type, color, 1, msg);
+}
+
+void printfc(const TCOLOR color, char* msg) {
+  printfc(color.type, color.color, msg);
 }
 
 void printfc(const COLOR color, char* msg) { printfc(color, 1, msg); }
