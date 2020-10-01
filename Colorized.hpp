@@ -8,11 +8,11 @@
 #ifndef COLORIZED_HPP
 #define COLORIZED_HPP
 
-#include <iostream>
 #include <cstring>
+#include <iostream>
 #include <sstream>
 
-#define ESC 033 
+#define ESC 033
 
 // Default Background color definitions
 #define DEFAULT 39
@@ -50,7 +50,7 @@
 #define FLIGHT_BLUE 104
 #define FLIGHT_MAGENTA 105
 #define FLIGHT_CYAN 106
-#define FWHITE 107   
+#define FWHITE 107
 
 #define DEFAULT 39
 #define BLACK 30
@@ -69,7 +69,6 @@
 #define LIGHT_MAGENTA 95
 #define LIGHT_CYAN 96
 #define LIGHT_WHITE 97
-
 
 #define RED_COLOR printf("\033[0;31m");
 #define GREEN_COLOR printf("\033[0;32m");
@@ -151,68 +150,52 @@ static std::string Templatestr(Template);
 // Reset (BLACK)
 #define WBLACK_COLOR "\033[0m"
 
-enum TYPE:int {
-    LIGHT = 0,
-    BOLD = 1,
-    DIM = 2,
-    UNDERLINED = 4,
-    BLINK = 5,
-    REVERSE = 7,
-    HIDDEN = 8,
-    UALL = 0,
-    UBOLD = 21,
-    UDIM = 22,
-    UUNDERLINED = 24,
-    UBLINK = 25,
-    UREVERSE = 27,
-    UHIDDEN = 28
+enum TYPE : int {
+  LIGHT = 0,
+  BOLD = 1,
+  DIM = 2,
+  UNDERLINED = 4,
+  BLINK = 5,
+  REVERSE = 7,
+  HIDDEN = 8,
+  UALL = 0,
+  UBOLD = 21,
+  UDIM = 22,
+  UUNDERLINED = 24,
+  UBLINK = 25,
+  UREVERSE = 27,
+  UHIDDEN = 28
 };
 
-std::string
-colorize(TYPE type, int color) {
-    return Templatestr + std::to_string(type) + Semicolonstr + std::to_string(color) + Markstr;
+std::string colorize(TYPE type, int color) {
+  return Templatestr + std::to_string(type) + Semicolonstr +
+         std::to_string(color) + Markstr;
 }
 
-void
-textBackground(int color) {
-	printf("%c[%dm", ESC, 40+color);
+void textBackground(int color) { printf("%c[%dm", ESC, 40 + color); }
+
+void setColor(const std::string color) { std::cout << color; }
+
+void setColor(TYPE type, int color) { setColor(colorize(type, color)); }
+
+void printfc(const std::string color, bool reset, char* msg) {
+  setColor(color);
+  printf(msg);
+  if (reset)
+    RESETB
 }
 
-void
-setColor(const std::string color) {
-    std::cout << color;
+void printfc(const std::string color, bool reset, const char* msg) {
+  setColor(color);
+  printf(msg);
+  if (reset)
+    RESETB
 }
 
-void
-setColor(TYPE type, int color) {
-    setColor(colorize(type,color));
+void printfc(const std::string color, char* msg) { printfc(color, 1, msg); }
+
+void printfc(const std::string color, const char* msg) {
+  printfc(color, 1, msg);
 }
 
-void
-printfc(const std::string color, bool reset, char* msg) {
-    setColor(color);
-    printf(msg);
-    if(reset)
-        RESETB
-}
-
-void
-printfc(const std::string color, bool reset, const char* msg) {
-    setColor(color);
-    printf(msg);
-    if(reset)
-        RESETB
-}
-
-void
-printfc(const std::string color, char* msg) {
-    printfc(color,1,msg);
-}
-
-
-void
-printfc(const std::string color, const char* msg) {
-    printfc(color,1,msg);
-}
-
-#endif // COLORIZED_HPP
+#endif  // COLORIZED_HPP

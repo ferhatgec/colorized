@@ -9,8 +9,9 @@
 #include <iostream>
 
 int main(void) {
-	//std::cout << Templatestr + intToString(1) + Semicolonstr + intToString(RED) + "m" << "Hello!\n";
-	printfc(colorize(TYPE::BOLD, CYAN), "Hello, Colorized!");
-	printfc(colorize(TYPE::BOLD, MAGENTA), "\nHello, Colorized (Char)!\n");
-	return 0;
+  // std::cout << Templatestr + intToString(1) + Semicolonstr + intToString(RED)
+  // + "m" << "Hello!\n";
+  printfc(colorize(TYPE::BOLD, CYAN), "Hello, Colorized!");
+  printfc(colorize(TYPE::BOLD, MAGENTA), "\nHello, Colorized (Char)!\n");
+  return 0;
 }
