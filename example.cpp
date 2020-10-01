@@ -10,7 +10,9 @@
 
 int main(void) {
   setColor(COLOR{255, 0, 0});
-  std::cout << "TEST";
+  std::cout << "TEST\n";
+  setColor(fromRGB(0, 255, 0));
+  std::cout << "TEST\n";
   return 0;
   // std::cout << Templatestr + intToString(1) + Semicolonstr + intToString(RED)
   // + "m" << "Hello!\n";

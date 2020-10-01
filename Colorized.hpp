@@ -173,6 +173,10 @@ typedef struct COLOR {
   unsigned short B;
 } COLOR;
 
+COLOR fromRGB(unsigned short r, unsigned short g, unsigned short b) {
+  return COLOR{r, g, b};
+}
+
 std::string toANSICode(COLOR color) {
   std::stringstream str;
   str << "\033[38;2;";
