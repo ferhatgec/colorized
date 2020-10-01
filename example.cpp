@@ -9,6 +9,9 @@
 #include <iostream>
 
 int main(void) {
+  setColor(colorize(COLOR{255, 0, 0}));
+  std::cout << "TEST";
+  return 0;
   // std::cout << Templatestr + intToString(1) + Semicolonstr + intToString(RED)
   // + "m" << "Hello!\n";
   printfc(colorize(TYPE::BOLD, CYAN), "Hello, Colorized!");

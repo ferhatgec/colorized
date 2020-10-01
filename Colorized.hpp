@@ -173,6 +173,20 @@ typedef struct COLOR {
   unsigned short B;
 } COLOR;
 
+std::string colorize(COLOR color) {
+  std::stringstream str;
+  str << "\033[38;2;";
+  str << color.R;
+  str << ";";
+  str << color.G;
+  str << ";";
+  str << color.B;
+  str << "m";
+  std::string val = str.str();
+  delete &str;
+  return val;
+}
+
 std::string colorize(TYPE type, int color) {
   return Templatestr + std::to_string(type) + Semicolonstr +
          std::to_string(color) + Markstr;
