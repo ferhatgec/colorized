@@ -70,39 +70,42 @@
 #define LIGHT_CYAN 96
 #define LIGHT_WHITE 97
 
-#define RED_COLOR() printf("\033[0;31m")
-#define GREEN_COLOR() printf("\033[0;32m")
-#define YELLOW_COLOR() printf("\033[0;33m")
-#define BLUE_COLOR() printf("\033[0;34m")
-#define MAGENTA_COLOR() printf("\033[0;35m")
-#define CYAN_COLOR() printf("\033[0;36m")
-#define LIGHT_BLACK_COLOR() printf("\033[0;90m")
-#define LIGHT_RED_COLOR() printf("\033[0;91m")
-#define LIGHT_GREEN_COLOR() printf("\033[0;92m")
-#define LIGHT_YELLOW_COLOR() printf("\033[0;93m")
-#define LIGHT_BLUE_COLOR() printf("\033[0;94m")
-#define LIGHT_MAGENTA_COLOR() printf("\033[0;95m")
-#define LIGHT_CYAN_COLOR() printf("\033[0;96m")
-#define LIGHT_WHITE_COLOR() printf("\033[0;97m")
+#define RED_COLOR std::cout << "\033[0;31m";
+#define GREEN_COLOR std::cout << "\033[0;32m";
+#define YELLOW_COLOR std::cout << "\033[0;33m";
+#define BLUE_COLOR std::cout << "\033[0;34m";
+#define MAGENTA_COLOR std::cout << "\033[0;35m";
+#define CYAN_COLOR std::cout << "\033[0;36m";
+#define LIGHT_BLACK_COLOR std::cout << "\033[0;90m";
+#define LIGHT_RED_COLOR std::cout << "\033[0;91m";
+#define LIGHT_GREEN_COLOR std::cout << "\033[0;92m";
+#define LIGHT_YELLOW_COLOR std::cout << "\033[0;93m";
+#define LIGHT_BLUE_COLOR std::cout << "\033[0;94m";
+#define LIGHT_MAGENTA_COLOR std::cout << "\033[0;95m";
+#define LIGHT_CYAN_COLOR std::cout << "\033[0;96m";
+#define LIGHT_WHITE_COLOR std::cout << "\033[0;97m";
 
 // Default bold** color definitions
-#define BOLD_RED_COLOR() printf("\033[1;31m")
-#define BOLD_GREEN_COLOR() printf("\033[1;32m")
-#define BOLD_YELLOW_COLOR() printf("\033[01;33m")
-#define BOLD_BLUE_COLOR() printf("\033[1;34m")
-#define BOLD_MAGENTA_COLOR() printf("\033[1;35m")
-#define BOLD_CYAN_COLOR() printf("\033[1;36m")
-#define BOLD_LIGHT_BLACK_COLOR() printf("\033[1;90m")
-#define BOLD_LIGHT_RED_COLOR() printf("\033[1;91m")
-#define BOLD_LIGHT_GREEN_COLOR() printf("\033[1;92m")
-#define BOLD_LIGHT_YELLOW_COLOR() printf("\033[1;93m")
-#define BOLD_LIGHT_BLUE_COLOR() printf("\033[1;94m")
-#define BOLD_LIGHT_MAGENTA_COLOR() printf("\033[1;95m")
-#define BOLD_LIGHT_CYAN_COLOR() printf("\033[1;96m")
-#define BOLD_LIGHT_WHITE_COLOR() printf("\033[1;97m")
+#define BOLD_RED_COLOR std::cout << "\033[1;31m";
+#define BOLD_GREEN_COLOR std::cout << "\033[1;32m";
+#define BOLD_YELLOW_COLOR std::cout << "\033[01;33m";
+#define BOLD_BLUE_COLOR std::cout << "\033[1;34m";
+#define BOLD_MAGENTA_COLOR std::cout << "\033[1;35m";
+#define BOLD_CYAN_COLOR std::cout << "\033[1;36m";
+#define BOLD_LIGHT_BLACK_COLOR std::cout << "\033[1;90m";
+#define BOLD_LIGHT_RED_COLOR std::cout << "\033[1;91m";
+#define BOLD_LIGHT_GREEN_COLOR std::cout << "\033[1;92m";
+#define BOLD_LIGHT_YELLOW_COLOR std::cout << "\033[1;93m";
+#define BOLD_LIGHT_BLUE_COLOR std::cout << "\033[1;94m";
+#define BOLD_LIGHT_MAGENTA_COLOR std::cout << "\033[1;95m";
+#define BOLD_LIGHT_CYAN_COLOR std::cout << "\033[1;96m";
+#define BOLD_LIGHT_WHITE_COLOR std::cout << "\033[1;97m";
 
-#define RESETB() printf("\033[0m")
-#define RESETW() printf("\033[1;37m")
+#define RESETB std::cout << "\033[0m";
+#define RESETW std::cout << "\033[1;37m";
+
+#define BLACK_COLOR std::cout << "\033[0m";
+#define WHITE_COLOR std::cout << "\033[1;37m";
 
 // Default color definitions without printlnf
 #define WRED_COLOR "\033[0;31m"
@@ -219,7 +222,7 @@ static std::string toANSICode(TCOLOR color) {
   	return toANSICode(color.type, color.color);
 }
 
-static void textBackground(int color) { printf("%c[%dm", ESC, 40 + color); }
+static void textBackground(int color) { std::cout << "%c[%dm" << ESC << 40 + color; }
 
 static void setColor(COLOR color) { std::cout << toANSICode(color); }
 
@@ -231,9 +234,9 @@ static void setColor(TCOLOR color) { setColor(color.type, color.color); }
 
 static void printfc(const TYPE type, int color, bool reset, char* msg) {
   	setColor(type, color);
-  	printf(msg);
+  	std::cout << msg;
 
-  	if (reset) RESETB();
+  	if (reset) RESETB
 }
 
 static void printfc(const TCOLOR color, bool reset, char* msg) {
@@ -242,9 +245,9 @@ static void printfc(const TCOLOR color, bool reset, char* msg) {
 
 static void printfc(const COLOR color, bool reset, char* msg) {
   	setColor(color);
-  	printf(msg);
+  	std::cout << msg;
   	
-	if (reset) RESETB();
+	if (reset) RESETB
 }
 
 static void printfc(const TYPE type, int color, char* msg) {
@@ -260,7 +263,7 @@ static void printfc(const COLOR color, char* msg) { printfc(color, 1, msg); }
 
 namespace colorized {
     static void TextBackground(int color) {
-	printf("%c[%dm", ESC, 40+color);
+		std::cout << "%c[%dm" << ESC << 40 + color;
     }
         
     static std::string IntToString(int a) {
@@ -270,7 +273,7 @@ namespace colorized {
     }
     
     static void PrintWith(const char* color, const char* text) {
-   	std::cout << color << text << WBLACK_COLOR;
+   		std::cout << color << text << WBLACK_COLOR;
     }
 
     static void PrintWhReset(const char* color, const char* text) {
