@@ -255,7 +255,7 @@ static void printfc(const TYPE type, int color, char* msg) {
 }
 
 static void printfc(const TCOLOR color, char* msg) {
-  	printfc(color.type, color.color, msg);
+    printfc(color.type, color.color, msg);
 }
 
 static void printfc(const COLOR color, char* msg) { printfc(color, 1, msg); }
@@ -272,12 +272,14 @@ namespace colorized {
     	return temp.str();
     }
     
-    static void PrintWith(const char* color, const char* text) {
-   		std::cout << color << text << WBLACK_COLOR;
+    template<typename T>
+    static void PrintWith(std::string color, T input) {
+   		std::cout << color << input << WBLACK_COLOR;
     }
 
-    static void PrintWhReset(const char* color, const char* text) {
-    	std::cout << color << text;
+    template<typename T>
+    static void PrintWhReset(std::string color, T input) {
+    	std::cout << color << input;
     }
 
     static std::string Colorize(int type, int color) {
