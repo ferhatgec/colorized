@@ -1,6 +1,6 @@
 /* MIT License
 #
-# Copyright (c) 2020 Ferhat Geçdoğan All Rights Reserved.
+# Copyright (c) 2020-2021 Ferhat Geçdoğan All Rights Reserved.
 # Distributed under the terms of the MIT License.
 #
 # */
@@ -8,7 +8,7 @@
 #ifndef COLORIZED_HPP
 #define COLORIZED_HPP
 
-#include <cstring>
+#include <string>
 #include <iostream>
 #include <sstream>
 
