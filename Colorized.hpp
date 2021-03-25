@@ -153,7 +153,7 @@ static std::string Templatestr(Template);
 // Reset (BLACK)
 #define WBLACK_COLOR "\033[0m"
 
-enum TYPE : int {
+enum TYPE : const int {
  	LIGHT = 0,
   	BOLD = 1,
   	DIM = 2,
@@ -232,33 +232,35 @@ static void setColor(TYPE type, int color) { std::cout << toANSICode(type, color
 
 static void setColor(TCOLOR color) { setColor(color.type, color.color); }
 
-static void printfc(const TYPE type, int color, bool reset, char* msg) {
+static void printfc(const TYPE type, int color, bool reset, std::string msg) {
   	setColor(type, color);
   	std::cout << msg;
 
   	if (reset) RESETB
 }
 
-static void printfc(const TCOLOR color, bool reset, char* msg) {
+static void printfc(const TCOLOR color, bool reset, std::string msg) {
  	printfc(color.type, color.color, reset, msg);
 }
 
-static void printfc(const COLOR color, bool reset, char* msg) {
+static void printfc(const COLOR color, bool reset, std::string msg) {
   	setColor(color);
   	std::cout << msg;
   	
 	if (reset) RESETB
 }
 
-static void printfc(const TYPE type, int color, char* msg) {
+static void printfc(const TYPE type, int color, std::string msg) {
   	printfc(type, color, 1, msg);
 }
 
-static void printfc(const TCOLOR color, char* msg) {
+static void printfc(const TCOLOR color, std::string msg) {
     printfc(color.type, color.color, msg);
 }
 
-static void printfc(const COLOR color, char* msg) { printfc(color, 1, msg); }
+static void printfc(const COLOR color, std::string msg) {
+    printfc(color, 1, msg);
+}
 
 
 namespace colorized {
